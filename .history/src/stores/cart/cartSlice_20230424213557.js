@@ -9,17 +9,16 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      let listProducts = JSON.parse(JSON.stringify(state.products));
+      const listProducts = JSON.parse(JSON.stringify(state.products));
       const productIndex = listProducts.findIndex(
         (product) => product._id === action.payload._id
       );
-      if (productIndex !== -1) {
+      if (productIndex > -1) {
         listProducts[productIndex].amount += 1;
-      } else {
-        listProducts = [...listProducts, { ...action.payload, amount: 1 }];
       }
+      console.log(listProducts);
       return {
-        products: [...listProducts],
+        products: [...state.products, { ...action.payload, amount: 1 }],
       };
     },
     clearCart: (state) => {

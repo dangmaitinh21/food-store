@@ -59,7 +59,7 @@ function Cart() {
       <div className={`tabs ${currentTab !== 'Payment' ? 'hidden' : ''}`}>
         <StripeWrapper />
       </div>
-      <ToastContainer limit={1} />
+      {/* <ToastContainer /> */}
     </div>
   );
 }

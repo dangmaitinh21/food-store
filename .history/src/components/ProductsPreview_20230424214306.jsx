@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
-import { toast } from 'react-toastify';
 import 'react-multi-carousel/lib/styles.css';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '~/stores/cart/cartSlice';
@@ -38,14 +37,6 @@ function ProductsPreview() {
 
   const onAddProduct = (product) => {
     dispatch(addToCart(product));
-    toast.success('Your product has been add to cart!', {
-      position: 'top-right',
-      autoClose: 500,
-      hideProgressBar: true,
-      pauseOnHover: false,
-      progress: undefined,
-      theme: 'dark',
-    });
   };
 
   return (
@@ -53,7 +44,7 @@ function ProductsPreview() {
       <Carousel responsive={responsive} infinite>
         {products.length > 0 &&
           products.map((product, index) => (
-            <div className="w-full h-full p-3" key={index}>
+            <div className="w-full flex p-3" key={index}>
               <ProductPreviewCard
                 product={product}
                 onAddProduct={onAddProduct}

@@ -40,7 +40,7 @@ function ProductsPreview() {
     dispatch(addToCart(product));
     toast.success('Your product has been add to cart!', {
       position: 'top-right',
-      autoClose: 500,
+      autoClose: 100,
       hideProgressBar: true,
       pauseOnHover: false,
       progress: undefined,

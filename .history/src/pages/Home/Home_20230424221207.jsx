@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 function Home() {
   return (
     <>
-      <ToastContainer limit={1} />
+      <ToastContainer />
       <Banner />
       <ProductsPreview />
       <About />

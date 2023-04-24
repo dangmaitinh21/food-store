@@ -8,7 +8,7 @@ function ProductSummaryCard({ product }) {
   const dispatch = useDispatch();
   return (
     <div className="flex justify-evenly w-full p-1 sm:p-2 border-b border-gray-200">
-      <div className="product-image mr-3 border border-gray-200 rounded-lg w-full sm:w-1/3">
+      <div className="product-image mr-3 border border-gray-200 rounded-lg w-full sm:w-1/3 min-w-7">
         <img src={product.imageUrl} alt={product.name} />
       </div>
       <div className="product-info">

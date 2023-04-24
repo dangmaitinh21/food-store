@@ -38,9 +38,9 @@ function ProductsPreview() {
 
   const onAddProduct = (product) => {
     dispatch(addToCart(product));
-    toast.success('Your product has been add to cart!', {
+    toast('Your product has been add to cart!', {
       position: 'top-right',
-      autoClose: 500,
+      autoClose: 1000,
       hideProgressBar: true,
       pauseOnHover: false,
       progress: undefined,

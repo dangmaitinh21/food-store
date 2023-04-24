@@ -12,13 +12,12 @@ function Login() {
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
   useEffect(() => {
     window.scroll({ top: 80, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
-    let timer = null;
+    const timer = null;
     if (redirect) {
       timer = setTimeout(() => navigate('/'), 2000);
     }
