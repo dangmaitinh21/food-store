@@ -1,0 +1,40 @@
+{
+  "name": "food-store",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "cd server && npm start",
+    "start-client": "npm run dev"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "@stripe/react-stripe-js": "^1.16.1",
+    "@stripe/stripe-js": "^1.46.0",
+    "clsx": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "firebase": "^9.15.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.40.0",
+    "react-multi-carousel": "^2.8.2",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.3",
+    "react-toastify": "^9.1.1",
+    "vite-plugin-svgr": "^2.2.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^4.0.2",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "vite": "^3.2.3"
+  }
+}
