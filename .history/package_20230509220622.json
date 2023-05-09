@@ -6,9 +6,9 @@
   "scripts": {
     "build": "vite build",
     "preview": "vite preview",
-    "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
-    "start-server": "cd server && npm start",
-    "start-client": "npm run dev"
+    "server": "cd server && npm start",
+    "client": "npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
