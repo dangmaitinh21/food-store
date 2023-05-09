@@ -1,6 +1,7 @@
 const { faker } = require('@faker-js/faker');
 const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash');
+const env = require('dotenv').config({ path: '../.env' });
 
 async function main() {
   const uri = `mongodb+srv://${process.env.VITE_DB_USERNAME}:${process.env.VITE_DB_PASSWORD}@${process.env.VITE_DB_HOST}`;

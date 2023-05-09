@@ -3,16 +3,18 @@ const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash');
 
 async function main() {
-  const uri = `mongodb+srv://${process.env.VITE_DB_USERNAME}:${process.env.VITE_DB_PASSWORD}@${process.env.VITE_DB_HOST}`;
+  const uri = `mongodb+srv://${import.meta.env.VITE_DB_USERNAME}:${
+    import.meta.env.VITE_DB_PASSWORD
+  }@${import.meta.env.VITE_DB_HOST}`;
   const client = new MongoClient(uri);
 
   try {
     await client.connect();
     const productsCollection = client
-      .db(`${process.env.VITE_DB_NAME}`)
+      .db(`${import.meta.env.VITE_DB_NAME}`)
       .collection('products');
     const categoriesCollection = client
-      .db(`${process.env.VITE_DB_NAME}`)
+      .db(`${import.meta.env.VITE_DB_NAME}`)
       .collection('categories');
 
     let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map(
