@@ -6,15 +6,6 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async () => {
-    const res = await fetch('http://localhost:8080/api/products-by-categories');
-    const data = res.json();
-    return data;
-  }
-);
-
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
@@ -25,12 +16,24 @@ export const productsSlice = createSlice({
       state.status = 'fulfilled';
     }),
       builder.addCase(fetchProducts.pending, (state, aciton) => {
-        state.products.push(action.payload);
         state.status = 'pending';
       });
   },
 });
 
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async () => {
+    const res = await fetch(
+      `${window.location.protocol}//${window.location.hostname}:${
+        import.meta.env.VITE_PORT
+      }/api/products-by-categories`
+    );
+    const data = await res.json();
+    return data;
+  }
+);
+
+export const selectAllProducts = (state) => state.products;
 export const { getProducts } = productsSlice.actions;
 export default productsSlice.reducer;
-export const selectAllProducts = (state) => state.products;

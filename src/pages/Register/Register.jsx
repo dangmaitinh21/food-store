@@ -73,17 +73,22 @@ function Register() {
           setLoading(false);
         }
       });
-    await fetch('http://localhost:8080/api/create-user', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        uid: uid,
-      }),
-    })
+    await fetch(
+      `${window.location.protocol}//${window.location.hostname}:${
+        import.meta.env.VITE_PORT
+      }/api/create-user`,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          uid: uid,
+        }),
+      }
+    )
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);

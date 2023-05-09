@@ -30,11 +30,7 @@ function ProductsPreview() {
   };
 
   useEffect(() => {
-    fetch(
-      `${window.location.protocol}//${window.location.hostname}:${
-        import.meta.env.VITE_PORT
-      }/api/products`
-    )
+    fetch(`${window.location.host}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data?.data))
       .catch((err) => console.log(err));

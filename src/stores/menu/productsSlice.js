@@ -24,7 +24,11 @@ export const productsSlice = createSlice({
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
-    const res = await fetch('http://localhost:8080/api/products-by-categories');
+    const res = await fetch(
+      `${window.location.protocol}//${window.location.hostname}:${
+        import.meta.env.VITE_PORT
+      }/api/products-by-categories`
+    );
     const data = await res.json();
     return data;
   }

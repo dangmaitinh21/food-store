@@ -11,12 +11,43 @@ function Register() {
   let navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+
   useEffect(() => {
     window.scroll({ top: 80, behavior: 'smooth' });
   }, []);
+
+  useEffect(() => {
+    let timer = null;
+    if (redirect) {
+      timer = setTimeout(() => navigate('/'), 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [redirect]);
+
   const onSubmit = async (data) => {
+    if (
+      data.name.length === 0 ||
+      data.password.length === 0 ||
+      data.email.length === 0
+    ) {
+      toast.error('Please fill out the information completely', {
+        pauseOnHover: false,
+        hideProgressBar: true,
+        autoClose: 500,
+        closeButton: false,
+        theme: 'dark',
+      });
+      return;
+    }
     if (data.password.length < 6) {
-      toast.error('Password must be at least 6 characters');
+      toast.error('Password must be at least 6 characters', {
+        pauseOnHover: false,
+        hideProgressBar: true,
+        autoClose: 500,
+        closeButton: false,
+        theme: 'dark',
+      });
       return;
     }
     setLoading(true);
@@ -32,34 +63,45 @@ function Register() {
       })
       .catch((err) => {
         if (err.code === 'auth/email-already-in-use') {
-          toast.error('Email already in use!');
+          toast.error('Email already in use!', {
+            pauseOnHover: false,
+            hideProgressBar: true,
+            autoClose: 1000,
+            closeButton: false,
+            theme: 'dark',
+          });
+          setLoading(false);
         }
       });
-    await fetch('http://localhost:8080/api/create-user', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        uid: uid,
-      }),
-    })
+    await fetch(
+      `${window.location.protocol}//${window.location.hostname}:${
+        import.meta.env.VITE_PORT
+      }/api/create-user`,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          uid: uid,
+        }),
+      }
+    )
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);
           toast.success('Account created successfully!', {
             position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
+            autoClose: 1000,
+            hideProgressBar: true,
             closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            pauseOnHover: false,
             progress: undefined,
             theme: 'dark',
           });
-          navigate('/login');
+          setRedirect(true);
         } else {
           console.log(res.json());
         }
@@ -123,7 +165,7 @@ function Register() {
             </div>
             <Button size="large">{loading ? 'loading...' : 'Register'}</Button>
           </form>
-          <ToastContainer />
+          <ToastContainer limit={1} />
         </div>
       </div>
     </div>

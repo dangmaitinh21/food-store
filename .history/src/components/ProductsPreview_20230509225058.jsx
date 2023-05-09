@@ -30,6 +30,11 @@ function ProductsPreview() {
   };
 
   useEffect(() => {
+    console.log(
+      `${window.location.protocol}//${window.location.hostname}:${
+        import.meta.env.VITE_PORT
+      }`
+    );
     fetch(
       `${window.location.protocol}//${window.location.hostname}:${
         import.meta.env.VITE_PORT
