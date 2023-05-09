@@ -3,8 +3,15 @@ const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash');
 
 async function main() {
-  const uri = 'mongodb://localhost://27017';
-  const client = new MongoClient(uri);
+  const uri =
+    'mongodb+srv://rynerlelouch:123456abc@cluster0.a9mhtg6.mongodb.net/?retryWrites=true&w=majority';
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
   try {
     await client.connect();
@@ -31,7 +38,7 @@ async function main() {
       let newProduct = {
         name: faker.commerce.productName(),
         adjective: faker.commerce.productAdjective(),
-        desciption: faker.commerce.productDescription(),
+        description: faker.commerce.productDescription(),
         price: faker.commerce.price(),
         category: _.sample(categories),
         imageUrl: _.sample(imageUrls),
@@ -45,3 +52,5 @@ async function main() {
     await client.close();
   }
 }
+
+main();

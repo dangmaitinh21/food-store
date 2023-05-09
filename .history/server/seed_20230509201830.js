@@ -3,15 +3,16 @@ const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash');
 
 async function main() {
-  const uri = 'mongodb://localhost://27017';
+  const uri =
+    'mongodb+srv://rynerlelouch:123456abc@cluster0.a9mhtg6.mongodb.net/';
   const client = new MongoClient(uri);
 
   try {
     await client.connect();
-    const productsCollection = client.db('food-store').collection('products');
+    const productsCollection = client.db('food-store').collections('products');
     const categoriesCollection = client
       .db('food-store')
-      .collection('categories');
+      .collections('categories');
 
     let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map(
       (category) => {
@@ -31,7 +32,7 @@ async function main() {
       let newProduct = {
         name: faker.commerce.productName(),
         adjective: faker.commerce.productAdjective(),
-        desciption: faker.commerce.productDescription(),
+        description: faker.commerce.productDescription(),
         price: faker.commerce.price(),
         category: _.sample(categories),
         imageUrl: _.sample(imageUrls),

@@ -4,8 +4,14 @@ const _ = require('lodash');
 
 async function main() {
   const uri =
-    'mongodb+srv://rynerlelouch:123456789abc@cluster0.a9mhtg6.mongodb.net/';
-  const client = new MongoClient(uri);
+    'mongodb+srv://rynerlelouch:123456abc@cluster0.a9mhtg6.mongodb.net/?retryWrites=true&w=majority';
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
   try {
     await client.connect();

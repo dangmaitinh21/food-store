@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 async function main() {
   const uri =
-    'mongodb+srv://rynerlelouch:123456789abc@cluster0.a9mhtg6.mongodb.net/';
+    'mongodb+srv://rynerlelouch:123456abc@cluster0.a9mhtg6.mongodb.net/';
   const client = new MongoClient(uri);
 
   try {

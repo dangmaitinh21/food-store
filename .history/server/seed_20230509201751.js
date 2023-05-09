@@ -4,15 +4,15 @@ const _ = require('lodash');
 
 async function main() {
   const uri =
-    'mongodb+srv://rynerlelouch:123456789abc@cluster0.a9mhtg6.mongodb.net/';
+    'mongodb+srv://rynerlelouch:123456abc@cluster0.a9mhtg6.mongodb.net/?retryWrites=true&w=majority';
   const client = new MongoClient(uri);
 
   try {
     await client.connect();
-    const productsCollection = client.db('food-store').collection('products');
+    const productsCollection = client.db('food-store').collections('products');
     const categoriesCollection = client
       .db('food-store')
-      .collection('categories');
+      .collections('categories');
 
     let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map(
       (category) => {
